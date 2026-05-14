@@ -102,9 +102,8 @@
 }
 
 .page[data-iframe-preview] .heroGlobeInner {
-  width: min(72vmin, 200px);
-  height: min(72vmin, 200px);
-  max-height: min(28svh, 188px);
+  aspect-ratio: 1;
+  width: min(82vw, 220px);
 }
 
 .page[data-iframe-preview] .heroTitle,
@@ -340,16 +339,19 @@
 .hero {
   position: relative;
   z-index: 1;
-  min-height: 100vh;
+  /* Shorter than full viewport: less empty space + leg clip reads cleaner than a tall black band */
+  --hero-min-h: clamp(32rem, 58svh, 44rem);
+  min-height: var(--hero-min-h);
   padding-top: 3.25rem;
   background: #000000;
-  overflow: hidden;
+  overflow-x: clip;
+  overflow-y: visible;
 }
 
 .heroGrid {
   position: relative;
   z-index: 1;
-  min-height: calc(100vh - 3.25rem);
+  min-height: calc(var(--hero-min-h) - 3.25rem);
   width: 100%;
   padding: max(0.75rem, env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right)) max(1rem, env(safe-area-inset-bottom))
     max(1rem, env(safe-area-inset-left));
@@ -360,15 +362,18 @@
   inset: 0;
   z-index: 0;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
+  padding-top: clamp(0, 2vw, 1rem);
   pointer-events: none;
 }
 
 .heroGlobeInner {
-  width: min(92vmin, 720px);
-  height: min(92vmin, 720px);
-  max-height: min(82vh, 680px);
+  /* vw + aspect-ratio: stable while scrolling (vh/vmin jump when mobile browser chrome resizes). */
+  aspect-ratio: 1;
+  width: min(88vw, 680px);
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .heroGlobeInner > div,
@@ -425,9 +430,7 @@
   }
 
   .heroGlobeInner {
-    width: min(96vmin, 520px);
-    height: min(96vmin, 520px);
-    max-height: 70vh;
+    width: min(92vw, 520px);
   }
 }
 
