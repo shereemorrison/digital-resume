@@ -291,7 +291,7 @@ export function CvPage({ scrollRef, hidePhoneMockup = false }: Props) {
         <div ref={heroGridRef} className={styles.heroGrid}>
           <div className={styles.heroGlobe} aria-hidden>
             <div className={styles.heroGlobeInner}>
-              <BackgroundScene scrollRef={scrollRef} />
+              <BackgroundScene />
             </div>
           </div>
           <h1 className={styles.heroTitle}>
