@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/react";
 import { useEffect, useRef } from "react";
 import { CvPage } from "./components/CvPage";
 import { PhoneEmbedResume } from "./components/PhoneEmbedResume";
@@ -32,6 +33,7 @@ export default function App() {
   return (
     <div className={styles.app}>
       <CvPage scrollRef={scrollRef} hidePhoneMockup={hidePhoneMockup} />
+      <Analytics />
     </div>
   );
 }
