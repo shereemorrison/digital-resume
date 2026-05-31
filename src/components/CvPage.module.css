@@ -568,7 +568,8 @@
     padding-right: calc(var(--phone-rail-w) + var(--phone-rail-right) + 0.5rem);
   }
 
-  .introSkillsChapter:not(.introSkillsChapterNoPhone) ~ .experience {
+  .introSkillsChapter:not(.introSkillsChapterNoPhone) ~ .experience,
+  .introSkillsChapter:not(.introSkillsChapterNoPhone) ~ .portfolio {
     padding-right: calc(var(--phone-rail-w) + var(--phone-rail-right) + 0.5rem);
   }
 
@@ -770,7 +771,8 @@
 .skillsTitle,
 .educationTitle,
 .experienceTitle,
-.otherExperienceTitle {
+.otherExperienceTitle,
+.portfolioTitle {
   font-family: var(--font-code);
   font-size: clamp(1.25rem, 3vw, 1.75rem);
   margin: 0 0 1.25rem;
@@ -974,6 +976,47 @@
   font-size: 0.75rem;
   color: var(--color-text-secondary);
   display: block;
+}
+
+/* —— Portfolio —— */
+.portfolio {
+  position: relative;
+  z-index: 3;
+  padding: var(--section-pad-y) var(--section-pad-x);
+  background: var(--color-page-fill, var(--color-section-fill, var(--color-background-experience)));
+  background-color: var(--color-background);
+  isolation: isolate;
+  color: var(--color-text-primary);
+  border-top: 1px solid var(--color-border);
+}
+
+@media (min-width: 768px) {
+  .portfolio {
+    padding: var(--section-pad-y-md) var(--section-pad-x-md);
+  }
+}
+
+.portfolioLead {
+  margin: 0 0 1.25rem;
+  max-width: 38rem;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+}
+
+.portfolioGrid {
+  list-style: none;
+  margin: 0.35rem 0 0;
+  padding: 0;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: clamp(0.5rem, 1vw, 0.85rem);
+  align-items: stretch;
+}
+
+.portfolioGrid > li {
+  min-width: 0;
 }
 
 /* —— Experience —— */

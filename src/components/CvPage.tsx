@@ -3,11 +3,13 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
 import { resume, type Job } from "../data/resume";
+import { portfolioProjects } from "../data/portfolio";
 import { getPhoneIframeSrc } from "../lib/portfolioPreview";
 import { ThemeToggle } from "../theme";
 import styles from "./CvPage.module.css";
 import { BackgroundScene } from "./BackgroundScene";
 import { PhoneBrowser } from "./PhoneBrowser";
+import { SitePreviewCard } from "./SitePreviewCard";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -19,6 +21,7 @@ const NAV = [
   { href: "#skills-section", label: "Skills" },
   { href: "#education-section", label: "Education" },
   { href: "#block-experience", label: "Technical experience" },
+  { href: "#portfolio-section", label: "Portfolio" },
   { href: "#other-experience-section", label: "Other experience" },
 ];
 
@@ -503,6 +506,27 @@ export function CvPage({ scrollRef, hidePhoneMockup = false }: Props) {
             <JobArticle key={`${job.company}-${job.period}`} job={job} />
           ))}
         </div>
+      </section>
+
+      <section id="portfolio-section" className={styles.portfolio}>
+        <div className={styles.sectionInner}>
+          <h2 className={styles.portfolioTitle}>Portfolio</h2>
+          <p className={styles.portfolioLead}>
+            Selected front-end projects — click any card to open the live site.
+          </p>
+        </div>
+        <ul className={styles.portfolioGrid}>
+          {portfolioProjects.map((project) => (
+            <li key={project.url}>
+              <SitePreviewCard
+                title={project.title}
+                url={project.url}
+                image={project.image}
+                description={project.description}
+              />
+            </li>
+          ))}
+        </ul>
       </section>
 
       <section ref={otherExpSectionRef} id="other-experience-section" className={styles.otherExperience}>
