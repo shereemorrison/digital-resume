@@ -36,4 +36,10 @@ export const portfolioProjects: PortfolioProject[] = [
     image: "/images/hairatagecelebration.png",
     description: "Bendigo TAFE hairdressing brochure.",
   },
+  {
+    title: "INU",
+    url: "https://inushereem.vercel.app/",
+    image: "/images/inu.png",
+    description: "Brand site — the future of canines.",
+  },
 ];
