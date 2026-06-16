@@ -568,8 +568,7 @@
     padding-right: calc(var(--phone-rail-w) + var(--phone-rail-right) + 0.5rem);
   }
 
-  .introSkillsChapter:not(.introSkillsChapterNoPhone) ~ .experience,
-  .introSkillsChapter:not(.introSkillsChapterNoPhone) ~ .portfolio {
+  .introSkillsChapter:not(.introSkillsChapterNoPhone) ~ .experience {
     padding-right: calc(var(--phone-rail-w) + var(--phone-rail-right) + 0.5rem);
   }
 
@@ -1007,16 +1006,35 @@
 .portfolioGrid {
   list-style: none;
   margin: 0.35rem 0 0;
-  padding: 0;
+  padding: 0 var(--section-pad-x);
   width: 100%;
+  box-sizing: border-box;
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: clamp(0.5rem, 1vw, 0.85rem);
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: clamp(0.45rem, 0.85vw, 0.75rem);
   align-items: stretch;
+}
+
+@media (min-width: 768px) {
+  .portfolioGrid {
+    padding-inline: var(--section-pad-x-md);
+  }
 }
 
 .portfolioGrid > li {
   min-width: 0;
+}
+
+@media (max-width: 899px) {
+  .portfolioGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 520px) {
+  .portfolioGrid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* —— Experience —— */
