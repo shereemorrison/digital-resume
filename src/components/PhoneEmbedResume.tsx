@@ -2,7 +2,7 @@ import { useLayoutEffect } from "react";
 import { resume } from "../data/resume";
 import styles from "./PhoneEmbedResume.module.css";
 
-/** Compact CV for `?embed=1` — loaded inside the About iPhone iframe (no WebGL, no nested phone). */
+/** Compact CV for `?embed=1` — loaded inside the About iPhone iframe (no nested phone). */
 export function PhoneEmbedResume() {
   const allJobs = [...resume.experience, ...resume.otherExperience];
 

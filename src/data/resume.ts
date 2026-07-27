@@ -51,7 +51,6 @@ export const resume: ResumeData = {
   resumeDownloadHref: "/resume.pdf",
   phonePreviewMode: "self-embed",
   siteTabLabel: "SM",
-  heroCharacterMode: "reference-gltf",
   summary:
     "Junior Developer with experience building responsive, user-focused interfaces using SwiftUI, Flutter and JavaScript. Strong focus on clean, maintainable code and translating complex data into clear, functional UI components. Experienced working with APIs and collaborating in cross-functional teams.",
   skillCategories: [
@@ -141,7 +140,7 @@ export const resume: ResumeData = {
       company: "Chance Hunter Solicitors",
       location: "Manchester, UK",
       period: "Jan 2011 — Sep 2014",
-      summary: "Workplace claims - sole responsibility for c. 100 cases at any given time",
+      summary: "Workplace claims - responsibility for c. 100 cases at any given time",
       highlights: [
         "Investigated claims, including reviewing medical and workplace records",
         "Engaged in settlement negotiations.",

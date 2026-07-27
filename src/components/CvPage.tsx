@@ -7,7 +7,6 @@ import { portfolioProjects } from "../data/portfolio";
 import { getPhoneIframeSrc } from "../lib/portfolioPreview";
 import { ThemeToggle } from "../theme";
 import styles from "./CvPage.module.css";
-import { BackgroundScene } from "./BackgroundScene";
 import { PhoneBrowser } from "./PhoneBrowser";
 import { SitePreviewCard } from "./SitePreviewCard";
 
@@ -21,7 +20,6 @@ const NAV = [
   { href: "#skills-section", label: "Skills" },
   { href: "#education-section", label: "Education" },
   { href: "#block-experience", label: "Technical experience" },
-  { href: "#portfolio-section", label: "Portfolio" },
   { href: "#other-experience-section", label: "Other experience" },
 ];
 
@@ -97,7 +95,6 @@ export function CvPage({ scrollRef, hidePhoneMockup = false }: Props) {
   const barRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLElement>(null);
   const heroGridRef = useRef<HTMLDivElement>(null);
-  const heroNameRef = useRef<HTMLHeadingElement>(null);
   const introRef = useRef<HTMLElement>(null);
   const introWrRef = useRef<HTMLDivElement>(null);
   const introCopyRef = useRef<HTMLDivElement>(null);
@@ -176,7 +173,6 @@ export function CvPage({ scrollRef, hidePhoneMockup = false }: Props) {
     const ctx = gsap.context(() => {
       const hero = heroRef.current;
       const heroGrid = heroGridRef.current;
-      const heroName = heroNameRef.current;
       const intro = introRef.current;
       const introWr = introWrRef.current;
       const introCopy = introCopyRef.current;
@@ -197,8 +193,7 @@ export function CvPage({ scrollRef, hidePhoneMockup = false }: Props) {
 
       if (!isPhonePreviewShell && heroGrid && intro) {
         const fadePrev = gsap.timeline();
-        const fadeHeroTargets = heroName ? [heroGrid, heroName] : [heroGrid];
-        fadePrev.fromTo(fadeHeroTargets, { opacity: 1 }, { opacity: 0, ease: "none" });
+        fadePrev.fromTo(heroGrid, { opacity: 1 }, { opacity: 0, ease: "none" });
         ScrollTrigger.create({
           trigger: intro,
           start: "top 58%",
@@ -400,21 +395,31 @@ export function CvPage({ scrollRef, hidePhoneMockup = false }: Props) {
       </nav>
 
       <section ref={heroRef} id="hero-section" className={styles.hero}>
+        <div className={styles.heroAmbient} aria-hidden>
+          <span className={styles.heroGlow} />
+          <span className={styles.heroRing} />
+          <span className={styles.heroGrain} />
+        </div>
         <div ref={heroGridRef} className={styles.heroGrid}>
-          <div className={styles.heroGlobe} aria-hidden>
-            <div className={styles.heroGlobeInner}>
-              <BackgroundScene />
-            </div>
-          </div>
-          <h1 className={styles.heroTitle}>
+          <p className={styles.heroEyebrow}>{resume.location} · {resume.workRights}</p>
+          <h1 className={styles.heroName}>
+            <span>{n1}</span>
+            {n2 ? <span>{n2}</span> : null}
+          </h1>
+          <div className={styles.heroRule} aria-hidden />
+          <h2 className={styles.heroTitle}>
             <span>{l1}</span>
             <span>{l2}</span>
-          </h1>
+          </h2>
+          <div className={styles.heroActions}>
+            <a className={styles.btn} href={`mailto:${resume.email}`}>
+              Email me
+            </a>
+            <a className={styles.btn} href="#block-experience">
+              View experience
+            </a>
+          </div>
         </div>
-        <h2 ref={heroNameRef} className={styles.heroName}>
-          <span>{n1}</span>
-          {n2 ? <span>{n2}</span> : null}
-        </h2>
       </section>
 
       <div
@@ -500,17 +505,11 @@ export function CvPage({ scrollRef, hidePhoneMockup = false }: Props) {
       </div>
 
       <section ref={expSectionRef} id="block-experience" className={styles.experience}>
-        <div className={styles.sectionInner}>
+        <div className={styles.experienceCopy}>
           <h2 className={styles.experienceTitle}>Technical experience</h2>
           {resume.experience.map((job) => (
             <JobArticle key={`${job.company}-${job.period}`} job={job} />
           ))}
-        </div>
-      </section>
-
-      <section id="portfolio-section" className={styles.portfolio}>
-        <div className={styles.sectionInner}>
-          <h2 className={styles.portfolioTitle}>Portfolio</h2>
           <p className={styles.portfolioLead}>
             Selected front-end projects — click any card to open the live site.
           </p>

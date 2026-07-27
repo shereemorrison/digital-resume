@@ -1,6 +1,5 @@
 node_modules
 dist
-_ref_3d_web
 .DS_Store
 *.local
 .env
